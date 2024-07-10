@@ -16,154 +16,32 @@ include_once "include/config.php";
         Le lien Pour en savoir plus doit mener à la fiche détaillée du camping.
   -->
 
+  <?php 
+  $sql = "SELECT * FROM campings WHERE actif = 1 ORDER BY popularite DESC LIMIT 8";
+  $result = $mysqli->query($sql);
+  ?>
+
   <div class="flex">
-    <div class="card">
-      <img src="https://picsum.photos/id/380/250/120" alt="Nom du camping">
-      <div class="container">
-        <div class="region-and-stars">
-          <div>
-            <span class="material-symbols-outlined">location_on</span>
-            <span class="a-programmer">Région</span>
+    <?php foreach ($result as $camping) : ?>
+      <div class="card">
+        <img src="https://picsum.photos/id/<?= $camping['id'] ?>/250/120" alt="<?= $camping['nom'] ?>">
+        <div class="container">
+          <div class="region-and-stars">
+            <div>
+              <span class="material-symbols-outlined">location_on</span>
+              <span class="a-programmer"><?= $camping['region'] ?></span>
+            </div>
+            <div>
+              <span class="a-programmer"><?= $camping['nb_etoiles'] ?></span>
+              <span class="material-symbols-outlined">family_star</span>
+            </div>
           </div>
-          <div>
-            <span class="a-programmer">0</span>
-            <span class="material-symbols-outlined">family_star</span>
-          </div>
+          <h4 class="a-programmer"><?= $camping['nom'] ?></h4>
+          <a href="fiche_camping.php?id=<?= $camping['id'] ?>" class="a-programmer">Pour en savoir plus</a>
         </div>
-        <h4 class="a-programmer">Nom du camping</h4>
-        <a href="#" class="a-programmer">Pour en savoir plus</a>
       </div>
-    </div>
-
-    <div class="card">
-      <img src="https://picsum.photos/id/71/250/120" alt="Nom du camping">
-      <div class="container">
-        <div class="region-and-stars">
-          <div>
-            <span class="material-symbols-outlined">location_on</span>
-            <span class="a-programmer">Région</span>
-          </div>
-          <div>
-            <span class="a-programmer">0</span>
-            <span class="material-symbols-outlined">family_star</span>
-          </div>
-        </div>
-        <h4 class="a-programmer">Nom du camping</h4>
-        <a href="#" class="a-programmer">Pour en savoir plus</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://picsum.photos/id/124/250/120" alt="Nom du camping">
-      <div class="container">
-        <div class="region-and-stars">
-          <div>
-            <span class="material-symbols-outlined">location_on</span>
-            <span class="a-programmer">Région</span>
-          </div>
-          <div>
-            <span class="a-programmer">0</span>
-            <span class="material-symbols-outlined">family_star</span>
-          </div>
-        </div>
-        <h4 class="a-programmer">Nom du camping</h4>
-        <a href="#" class="a-programmer">Pour en savoir plus</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://picsum.photos/id/127/250/120" alt="Nom du camping">
-      <div class="container">
-        <div class="region-and-stars">
-          <div>
-            <span class="material-symbols-outlined">location_on</span>
-            <span class="a-programmer">Région</span>
-          </div>
-          <div>
-            <span class="a-programmer">0</span>
-            <span class="material-symbols-outlined">family_star</span>
-          </div>
-        </div>
-        <h4 class="a-programmer">Nom du camping</h4>
-        <a href="#" class="a-programmer">Pour en savoir plus</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://picsum.photos/id/128/250/120" alt="Nom du camping">
-      <div class="container">
-        <div class="region-and-stars">
-          <div>
-            <span class="material-symbols-outlined">location_on</span>
-            <span class="a-programmer">Région</span>
-          </div>
-          <div>
-            <span class="a-programmer">0</span>
-            <span class="material-symbols-outlined">family_star</span>
-          </div>
-        </div>
-        <h4 class="a-programmer">Nom du camping</h4>
-        <a href="#" class="a-programmer">Pour en savoir plus</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://picsum.photos/id/177/250/120" alt="Nom du camping">
-      <div class="container">
-        <div class="region-and-stars">
-          <div>
-            <span class="material-symbols-outlined">location_on</span>
-            <span class="a-programmer">Région</span>
-          </div>
-          <div>
-            <span class="a-programmer">0</span>
-            <span class="material-symbols-outlined">family_star</span>
-          </div>
-        </div>
-        <h4 class="a-programmer">Nom du camping</h4>
-        <a href="#" class="a-programmer">Pour en savoir plus</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://picsum.photos/id/203/250/120" alt="Nom du camping">
-      <div class="container">
-        <div class="region-and-stars">
-          <div>
-            <span class="material-symbols-outlined">location_on</span>
-            <span class="a-programmer">Région</span>
-          </div>
-          <div>
-            <span class="a-programmer">0</span>
-            <span class="material-symbols-outlined">family_star</span>
-          </div>
-        </div>
-        <h4 class="a-programmer">Nom du camping</h4>
-        <a href="#" class="a-programmer">Pour en savoir plus</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://picsum.photos/id/217/250/120" alt="Nom du camping">
-      <div class="container">
-        <div class="region-and-stars">
-          <div>
-            <span class="material-symbols-outlined">location_on</span>
-            <span class="a-programmer">Région</span>
-          </div>
-          <div>
-            <span class="a-programmer">0</span>
-            <span class="material-symbols-outlined">family_star</span>
-          </div>
-        </div>
-        <h4 class="a-programmer">Nom du camping</h4>
-        <a href="#" class="a-programmer">Pour en savoir plus</a>
-      </div>
-    </div>
-
+    <?php endforeach; ?>
   </div>
-
-
 </main>
 
 <?php include_once(__DIR__ . '/include/footer.php'); ?>

@@ -27,6 +27,11 @@ if ($mysqli->connect_errno) {
 <body class="dark-mode">
 
   <!-- Navigation -->
+<?php
+  $sql = "SELECT nom FROM experiences";
+$result = $mysqli->query($sql);
+?>
+
   <header>
     <nav>
       <a href="index.php"><img src="img/Gemini_Generated_Image_wsz3zowsz3zowsz3.jpg" alt="logo"></a>
@@ -35,10 +40,12 @@ if ($mysqli->connect_errno) {
           <li>
             <a href="#">Expériences &nbsp;<i class="arrow down"></i></a>
             <ul>
-              <li><a href="#">Expérience #1</a></li>
-              <li><a href="#">Expérience #2</a></li>
-              <li><a href="#">Expérience #3</a></li>
-              <li><a href="#">...</a></li>
+              <?php
+              if ($result->num_rows > 0): ?>
+              <?php while ($row = $result->fetch_assoc()): ?>
+                <li><a href='liste_campings_par_experience.php?id'><?= $row["nom"] ?></a></li>
+              <?php endwhile; ?>
+              <?php endif; ?>
             </ul>
           </li>
           <li><a href="#">Campings 3* et plus</a></li>  

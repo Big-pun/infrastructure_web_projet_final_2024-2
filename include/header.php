@@ -1,4 +1,13 @@
-<?php include_once(__DIR__ . '/config.php'); ?>
+<?php include_once(__DIR__ . '/config.php'); 
+
+$mysqli = new mysqli($host, $username, $password, $dbname);
+if ($mysqli->connect_errno) {
+  echo "Échec de connexion à la base de données MySQL: " . $mysqli->connect_error;
+  exit();
+} else {
+  echo "Connexion réussie !!";
+}
+?>
 
 
 <!DOCTYPE html>

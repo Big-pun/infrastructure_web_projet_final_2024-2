@@ -1,13 +1,5 @@
 <?php include_once(__DIR__ . '/include/header.php');
 include_once "include/config.php";
-// verifier si l'utilisateur est connecté
-$mysqli = new mysqli($host, $username, $password, $dbname);
-if ($mysqli->connect_errno) {
-  echo "Échec de connexion à la base de données MySQL: " . $mysqli->connect_error;
-  exit();
-} else {
-  echo "Connexion réussie !!";
-}
 ?>
 
 <main>

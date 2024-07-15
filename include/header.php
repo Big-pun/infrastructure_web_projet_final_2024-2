@@ -61,7 +61,7 @@ if ($mysqli->connect_errno) {
             <?php endif; ?>
           </ul>
         </li>
-        <li><a href="#">Campings 3* et plus</a></li>
+        <li><a href="liste_campings_trois_etoiles_et_plus.php">Campings 3* et plus</a></li>
         <li><a href="liste_campings.php">Liste complète</a></li>
         <li><a href="#">Module personnel</a></li>
         <li><a href="#">Administration</a></li>

@@ -3,6 +3,7 @@ include_once "include/config.php";
 ?>
 
 <!-- a-programmer -->
+ 
 
 <!-- Cette page doit être utilisée pour afficher la fiche détaillée du camping choisi par l'utilisateur -->
 <!-- Elle est volontairement vide, c'est à vous de la construire -->

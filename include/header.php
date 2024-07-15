@@ -22,6 +22,19 @@ if ($mysqli->connect_errno) {
   <title>Titre de la page (défi! rendre ce titre dynamique selon la page sélectionnée)</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="css/styles.css">
+  <!-- <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script> -->
+
 </head>
 
 <body class="dark-mode">
@@ -49,7 +62,7 @@ if ($mysqli->connect_errno) {
           </ul>
         </li>
         <li><a href="#">Campings 3* et plus</a></li>
-        <li><a href="#">Liste complète</a></li>
+        <li><a href="liste_campings.php">Liste complète</a></li>
         <li><a href="#">Module personnel</a></li>
         <li><a href="#">Administration</a></li>
       </ul>

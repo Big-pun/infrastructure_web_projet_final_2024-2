@@ -5,12 +5,9 @@ include_once(__DIR__ . '/include/header.php');
 if (isset($_GET['id'])) {
   // Récupération de l'id de l'expérience
   $id_experience = $_GET['id'];
-  // Vous pouvez maintenant utiliser $id_experience pour vos opérations
 } else {
   // Si l'id n'est pas présent dans l'URL, afficher un message d'erreur ou effectuer une redirection
   echo "Erreur: Aucun id d'expérience sélectionné.";
-  // Ou redirection vers une autre page
-  // header('Location: page_erreur.php');
   exit; // Arrêt du script
 }
 
@@ -33,24 +30,40 @@ $resultatCampings = $requeteCamping->get_result();
 
   <main>
   
-    <h1 class="a-programmer"><?= $experience["nom"] ?></h1>
-    <p class="a-programmer"><?= $experience["description"] ?></p>
+    <h1><?= $experience["nom"] ?></h1>
+    <p><?= $experience["description"] ?></p>
 	
-    <div class="a-programmer">
+    <div class="">
       <!-- Affichez la liste de tous les campings ACTIFS appartenant à l'expérience sélectionnée, en ordre alphabétique -->
-
-      
-      <!-- La mise en forme est à votre discrétion, mais ne doit pas être représentée sous forme de cartes -->
-      <!-- (elle doit être différente de celle de la page d’accueil).-->
       <!-- Les informations à afficher sont :
               - l’image (statique ou dynamique selon le # picsum)
               - la région
               - le nom du camping 
               - un lien « Pour en savoir plus » menant à la fiche détaillée. 
       -->
+
+      <?php if ($resultatCampings->num_rows > 0) : ?>
+        <ul>
+          <?php while ($row = $resultatCampings->fetch_assoc()) : ?>
+            <li class="flex">
+              <h2><?= $row["nom"] ?></h2>
+              <div class="background" style="background-image: url('https://picsum.photos/id/<?= $row["id_picsum"] ?>/500/300');background-size: cover; background-position: center;">
+              <p><?= $row["region"] ?></p>
+              </div>
+              <a href="fiche_camping.php?id=<?= $row["id"] ?>">Pour en savoir plus</a>
+              </div>
+            </li>
+            <br/>
+          <?php endwhile; ?>
+        </ul>
+      <?php else : ?>
+        <p>Aucun camping actif pour cette expérience.</p>
+      <?php endif; ?>
+
+
+
     
-      Remplacez ce texte par la liste des campings appartenant à l'expérience sélectionnée, tout en respectant les consignes inscrites en commentaires. 
-    </div>
+     </div>
 
   </main>
 

@@ -1,4 +1,4 @@
-<?php include_once(__DIR__ . '/config.php'); 
+<?php include_once(__DIR__ . '/config.php');
 
 $mysqli = new mysqli($host, $username, $password, $dbname);
 if ($mysqli->connect_errno) {
@@ -27,34 +27,32 @@ if ($mysqli->connect_errno) {
 <body class="dark-mode">
 
   <!-- Navigation -->
-<?php
-  $sql = "SELECT nom FROM experiences";
-$result = $mysqli->query($sql);
-?>
+  <?php
+  $requete = "SELECT nom, id FROM experiences";
+  $resultat = $mysqli->query($requete);
+  ?>
 
   <header>
     <nav>
       <a href="index.php"><img src="img/Gemini_Generated_Image_wsz3zowsz3zowsz3.jpg" alt="logo"></a>
       <ul>
-          <li><a href="index.php">Accueil</a></li>
-          <li>
-            <a href="#">Expériences &nbsp;<i class="arrow down"></i></a>
-            <ul>
-              <?php
-              if ($result->num_rows > 0): ?>
-              <?php while ($row = $result->fetch_assoc()): ?>
-                <li><a href='liste_campings_par_experience.php?id'><?= $row["nom"] ?></a></li>
+        <li><a href="index.php">Accueil</a></li>
+        <li>
+          <a href="#">Expériences &nbsp;<i class="arrow down"></i></a>
+          <ul>
+            <?php
+            if ($resultat->num_rows > 0) : ?>
+              <?php while ($row = $resultat->fetch_assoc()) : ?>
+                <li><a href='liste_campings_par_experience.php?id=<?= $row["id"] ?>'><?= $row["nom"] ?></a></li>
               <?php endwhile; ?>
-              <?php endif; ?>
-            </ul>
-          </li>
-          <li><a href="#">Campings 3* et plus</a></li>  
-          <li><a href="#">Liste complète</a></li>
-          <li><a href="#">Module personnel</a></li>
-          <li><a href="#">Administration</a></li>
+            <?php endif; ?>
+          </ul>
+        </li>
+        <li><a href="#">Campings 3* et plus</a></li>
+        <li><a href="#">Liste complète</a></li>
+        <li><a href="#">Module personnel</a></li>
+        <li><a href="#">Administration</a></li>
       </ul>
     </nav>
     <hr>
   </header>
-
-  

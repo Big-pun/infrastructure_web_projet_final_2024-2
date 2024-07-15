@@ -7,12 +7,12 @@ include_once "include/config.php";
 
   <!-- Campings sous forme de cartes -->
   <?php 
-  $sql = "SELECT * FROM campings WHERE actif = 1 ORDER BY popularite DESC LIMIT 8";
-  $result = $mysqli->query($sql);
+  $requete = "SELECT * FROM campings WHERE actif = 1 ORDER BY popularite DESC LIMIT 8";
+  $resultat = $mysqli->query($requete);
   ?>
 
   <div class="flex">
-    <?php foreach ($result as $camping) : ?>
+    <?php foreach ($resultat as $camping) : ?>
       <div class="card">
         <img src="https://picsum.photos/id/<?= $camping['id'] ?>/250/120" alt="<?= $camping['nom'] ?>">
         <div class="container">

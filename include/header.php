@@ -63,8 +63,8 @@ if ($mysqli->connect_errno) {
         </li>
         <li><a href="liste_campings_trois_etoiles_et_plus.php">Campings 3* et plus</a></li>
         <li><a href="liste_campings.php">Liste complète</a></li>
-        <li><a href="#">Module personnel</a></li>
-        <li><a href="#">Administration</a></li>
+        <li><a href="module_personnel.php">Module personnel</a></li>
+        <li><a href="administration_module_personnel.php">Administration</a></li>
       </ul>
     </nav>
     <hr>

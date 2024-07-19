@@ -30,7 +30,7 @@ $resultat = $requete->get_result();
           <?php endwhile; ?>
         </ul>
       <?php else : ?>
-        <p>Aucun camping actif pour cette expérience.</p>
+        <p>Aucun camping actif trouvé</p>
       <?php endif; ?>
     
   </div>

@@ -1,5 +1,5 @@
 <?php include_once(__DIR__ . '/include/header.php');
-include_once "include/config.php";
+
 
 // Requête pour obtenir les informations du camping sélectionné
 $requete = $mysqli->prepare("SELECT nom, region, adresse, ville, code_postal, description, nb_etoiles, accepte_animaux  FROM campings WHERE id = ?;");

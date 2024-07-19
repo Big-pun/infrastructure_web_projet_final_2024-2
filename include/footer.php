@@ -8,6 +8,6 @@
 
   
   <!-- JavaScript ici, au besoin -->
-
+  <script src="./js/scripts.js"></script>
 </body>
 </html>

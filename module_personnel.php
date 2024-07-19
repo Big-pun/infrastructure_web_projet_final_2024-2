@@ -33,9 +33,9 @@ foreach ($resultat as $row) {
       <!-- La requête utilisée doit contenir un inner join pertinent. -->
 
     <?php if (count($recettes) > 0) : ?>
-    <ul>
+    <ul class="flex">
         <?php foreach ($recettes as $nomRecette => $details) : ?>
-            <div class="">
+            <div class="card">
                 <h2><?= $nomRecette ?></h2>
                 <h3><?= $details["description"] ?></h3>
                 <p>Temps de préparation : <?= $details["temps_preparation"] ?> minutes</p>

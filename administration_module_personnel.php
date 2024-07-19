@@ -24,7 +24,7 @@ $resultat = $requete->get_result();
                     <h2><?= ($row["nom"]) ?></h2>
                     </ul>
                     <a href="recette.php?id=<?= ($row["id"]) ?>">Voir la recette</a>
-                    <a href="modifier_recette.php?id=<?= ($row["id"]) ?>">Modifier la recette</a>
+                    <a href="recette-modifier.php?id=<?= ($row["id"]) ?>">Modifier la recette</a>
                     <a href="supprimer_recette.php?id=<?= ($row["id"]) ?>">Supprimer la recette</a>
                 </div>
             </div>

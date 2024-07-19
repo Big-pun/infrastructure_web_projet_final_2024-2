@@ -16,34 +16,39 @@ $resultat = $requete->get_result();
 $recette = []; // Initialisation du tableau pour la recette
 foreach ($resultat as $row) {
   if (!isset($recette["nom"])) {
-      $recette = [
-          "nom" => $row["recette"],
-          "description" => $row["description"],
-          "temps_preparation" => $row["temps_preparation"],
-          "niveau_difficulte" => $row["niveau_difficulte"],
-          "ingredients" => []
-      ];
+    $recette = [
+      "nom" => $row["recette"],
+      "description" => $row["description"],
+      "temps_preparation" => $row["temps_preparation"],
+      "niveau_difficulte" => $row["niveau_difficulte"],
+      "ingredients" => []
+    ];
   }
   $recette["ingredients"][] = $row["nom"] . " : " . $row["quantite"];
 }
-
 ?>
 
-<?php if (!empty($recette)) : ?>
-  <div class="card">
-    <h2><?= $recette["nom"] ?></h2>
-    <h3><?= $recette["description"] ?></h3>
-    <p>Temps de préparation : <?= $recette["temps_preparation"] ?> minutes</p>
-    <p>Niveau : <?= $recette["niveau_difficulte"] ?></p>
-    <h4>Ingrédients : </h4>
-    <ul>
-      <?php foreach ($recette["ingredients"] as $ingredient) : ?>
-        <li><?= $ingredient ?></li>
-      <?php endforeach; ?>
-    </ul>
-  </div>
-<?php else : ?>
-  <p>Aucune recette trouvée pour l'identifiant fourni.</p>
-<?php endif; ?>
+<main>
+
+  <?php if (!empty($recette)) : ?>
+    <div class="card">
+      <h2><?= $recette["nom"] ?></h2>
+      <h3><?= $recette["description"] ?></h3>
+      <p>Temps de préparation : <?= $recette["temps_preparation"] ?> minutes</p>
+      <p>Niveau : <?= $recette["niveau_difficulte"] ?></p>
+      <h4>Ingrédients : </h4>
+      <ul>
+        <?php foreach ($recette["ingredients"] as $ingredient) : ?>
+          <li><?= $ingredient ?></li>
+        <?php endforeach; ?>
+      </ul>
+      <div class="form-group">
+        <a href="administration_module_personnel.php">Retour à la page admin</a>
+      </div>
+    </div>
+  <?php else : ?>
+    <p>Aucune recette trouvée pour l'identifiant fourni.</p>
+  <?php endif; ?>
+</main>
 
 <?php include_once(__DIR__ . '/include/footer.php'); ?>

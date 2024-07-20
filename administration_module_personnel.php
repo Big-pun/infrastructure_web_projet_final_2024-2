@@ -25,7 +25,7 @@ $resultat = $requete->get_result();
                     </ul>
                     <a href="recette.php?id=<?= ($row["id"]) ?>">Voir la recette</a>
                     <a href="recette-modifier.php?id=<?= ($row["id"]) ?>">Modifier la recette</a>
-                    <a href="supprimer_recette.php?id=<?= ($row["id"]) ?>">Supprimer la recette</a>
+                    <a href="recette-supprimer.php?id=<?= ($row["id"]) ?>">Supprimer la recette</a>
                 </div>
             </div>
         <?php endwhile; ?>
@@ -33,7 +33,7 @@ $resultat = $requete->get_result();
         <p>Aucune recette trouvée</p>
     <?php endif; ?>
     <a href="recette-ajouter.php">Ajouter une recette</a>
-    
+
 
 
 

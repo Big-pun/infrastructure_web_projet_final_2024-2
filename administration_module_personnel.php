@@ -32,6 +32,8 @@ $resultat = $requete->get_result();
     <?php else : ?>
         <p>Aucune recette trouvée</p>
     <?php endif; ?>
+    <a href="recette-ajouter.php">Ajouter une recette</a>
+    
 
 
 

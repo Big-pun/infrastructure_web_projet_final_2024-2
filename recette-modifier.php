@@ -37,7 +37,7 @@ if (isset($_POST['id'], $_POST['nom'], $_POST['description'], $_POST['temps_prep
     if ($requete = $mysqli->prepare("UPDATE recettes SET nom=?, description=?, temps_preparation=?, niveau_difficulte=? WHERE id=?")) {
         error_log("Exécution de la requête avec : nom=" . $_POST['nom'] . ", description=" . $_POST['description'] . ", temps_preparation=" . $_POST['temps_preparation'] . ", niveau_difficulte=" . $_POST['niveau_difficulte'] . ", id=" . $_POST['id']);
 
-        $requete->bind_param("ssssi", $_POST['nom'], $_POST['description'], $_POST['temps_preparation'], $_POST['niveau_difficulte'], $_POST['id']);
+        $requete->bind_param("ssisi", $_POST['nom'], $_POST['description'], $_POST['temps_preparation'], $_POST['niveau_difficulte'], $_POST['id']);
 
         if ($requete->execute()) {
             error_log("Requête exécutée avec succès");

@@ -2,20 +2,19 @@
 include_once(__DIR__ . '/include/header.php');
 
 // Affichage 
-if (!isset($_GET['id'])) { // Vérification que la page reçoit un identifiant en paramètre
+if (!isset($_GET['id'])) {
     echo 'Identifiant manquant';
     exit();
 }
 
-if ($requete = $mysqli->prepare("SELECT * FROM recettes WHERE id=?")) {  // Création d'une requête préparée 
+if ($requete = $mysqli->prepare("SELECT * FROM recettes WHERE id=?")) {
+    $requete->bind_param("i", $_GET['id']);
+    $requete->execute();
 
-    $requete->bind_param("i", $_GET['id']); // Envoi des paramètres à la requête
-    $requete->execute(); // Exécution de la requête
+    $result = $requete->get_result();
+    $recette = $result->fetch_assoc();
 
-    $result = $requete->get_result(); // Récupération de résultats de la requête
-    $recette = $result->fetch_assoc(); // Récupération de l'enregistrement
-
-    $requete->close(); // Fermeture du traitement 
+    $requete->close();
 }
 
 if (empty($recette)) {
@@ -27,42 +26,43 @@ if (empty($recette)) {
 $messageMAJ = "";
 
 // Vérification de la soumission du formulaire
-if (isset($_POST['id']) && isset($_POST['nom']) && isset($_POST['description']) && isset($_POST['temps_preparation']) && isset($_POST['niveau_difficulte'])) {
-    $mysqli = new mysqli($host, $username, $password, $dbname); // Connexion à la base de données
+if (isset($_POST['id'], $_POST['nom'], $_POST['description'], $_POST['temps_preparation'], $_POST['niveau_difficulte'])) {
+    $mysqli = new mysqli($host, $username, $password, $dbname);
 
-
-    if ($mysqli->connect_errno) { // Gestion des erreurs de connexion
+    if ($mysqli->connect_errno) {
         echo "Échec de connexion à la base de données MySQL: " . $mysqli->connect_error;
         exit();
     }
 
-    if ($requete = $mysqli->prepare("UPDATE recettes SET nom=?, description=?, temps_preparation=?, niveau_difficulte=? WHERE id=?")) { // Création d'une requête préparée 
-    
-    $requete->bind_param("ssssi", $_POST['nom'], $_POST['description'], $_POST['temps_preparation'], $_POST['niveau_difficulte'], $_POST['id']); // Envoi des paramètres à la requête. 
-    
-    if ($requete->execute()) { // Exécution de la requête
-        $messageMAJ = "<div class='alert alert-success'>Produit mis à jour</div>";  // Message ajouté dans la page en cas d'ajout réussi
+    if ($requete = $mysqli->prepare("UPDATE recettes SET nom=?, description=?, temps_preparation=?, niveau_difficulte=? WHERE id=?")) {
+        error_log("Exécution de la requête avec : nom=" . $_POST['nom'] . ", description=" . $_POST['description'] . ", temps_preparation=" . $_POST['temps_preparation'] . ", niveau_difficulte=" . $_POST['niveau_difficulte'] . ", id=" . $_POST['id']);
+
+        $requete->bind_param("ssssi", $_POST['nom'], $_POST['description'], $_POST['temps_preparation'], $_POST['niveau_difficulte'], $_POST['id']);
+
+        if ($requete->execute()) {
+            error_log("Requête exécutée avec succès");
+            $messageMAJ = "<div class='alert alert-success'>Recette mise à jour</div>";
+        } else {
+            error_log("Erreur lors de l'exécution de la requête : " . $requete->error);
+            $messageMAJ =  "<div class='alert alert-danger'>Une erreur est survenue lors de la mise à jour.</div>";
+        }
+
+        $requete->close();
     } else {
-        $messageMAJ =  "<div class='alert alert-danger'>Une erreur est survenue lors de la mise à jour.</div>";  // Message ajouté dans la page en cas d'ajout en échec
+        echo "Erreur préparation de la requête : " . $mysqli->error;
     }
-    
-    $requete->close(); // Fermeture du traitement
-} else {
-    echo "Erreur préparation de la requête : " . $mysqli->error; // Affichage d'une erreur en cas de problème avec la requête
-}
-    
-    $mysqli->close(); // Fermeture de la connexion 
+
+    $mysqli->close();
 }
 ?>
 
 <main>
+    <?= $messageMAJ ?>
     <div class="card">
         <h2>Modifier la recette de <?= $recette["nom"] ?></h2>
 
-        <?php echo $messageMAJ ?>
-
         <form method="post">
-            <input type="hidden" name="id" id="id" <?= $recette['id'] ?>>
+            <input type="hidden" name="id" id="id" value="<?= $recette['id'] ?>">
             <div class="form-group">
                 <label for="nom">Nom</label>
                 <input type="text" class="form-control" id="nom" name="nom" required minlength="2" maxlength="25" value="<?= $recette['nom'] ?>">
@@ -91,10 +91,8 @@ if (isset($_POST['id']) && isset($_POST['nom']) && isset($_POST['description']) 
             <div class="form-group">
                 <a href="administration_module_personnel.php">Retour à la page admin</a>
             </div>
-
         </form>
     </div>
 </main>
 
 <?php include_once(__DIR__ . '/include/footer.php'); ?>
-

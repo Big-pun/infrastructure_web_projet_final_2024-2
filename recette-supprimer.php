@@ -8,9 +8,9 @@ if (!isset($_GET['id'])) {
 
 $messageSuppression = "";
 
+// Suppression de la recette si le formulaire est soumis et que l'identifiant est présent
 if (isset($_POST['submit']) && isset($_GET['id'])) {
     $mysqli = new mysqli($host, $username, $password, $dbname);
-
     if ($mysqli->connect_errno) {
         echo "Échec de connexion à la base de données MySQL: " . $mysqli->connect_error;
         exit();
@@ -33,8 +33,16 @@ if (isset($_POST['submit']) && isset($_GET['id'])) {
     } else {
         echo "Erreur préparation de la requête : " . $mysqli->error;
     }
-
+    $mysqli->close();
 }
+
+// Récupération de la recette à supprimer pour affichage dans le formulaire
+$mysqli = new mysqli($host, $username, $password, $dbname);
+if ($mysqli->connect_errno) {
+    echo "Échec de connexion à la base de données MySQL: " . $mysqli->connect_error;
+    exit();
+}
+
 
 if ($requete = $mysqli->prepare("SELECT * FROM recettes WHERE id=?")) {
     $requete->bind_param("i", $_GET['id']);
@@ -49,20 +57,21 @@ $mysqli->close();
 ?>
 
 <main>
-        <h1>Supprimer une recette</h1>
-        <? if ($recette) { ?>
+    <h1>Supprimer une recette</h1>
+    <?php if ($recette) { ?>
         <p>Êtes-vous sûr de vouloir supprimer la recette suivante?</p>
         <p><strong><?= $recette['nom'] ?></strong></p>
         <p><?= $recette['description'] ?></p>
 
-        <form method="post">
+        <form method="POST">
             <input type="hidden" name="id" value="<?= $recette['id'] ?>">
-            <button type="submit" name="submit" class="btn btn-danger">Supprimer</button>
+            <button type="submit" name="submit" class="btn btn-danger">Oui</button>
+            <a href="administration_module_personnel.php" class="btn btn-primary">Non</a>
         </form>
-        <? } else { ?>
-          <?= $messageSuppression ?><br>
-        <? } ?> 
-        <a href="administration_module_personnel.php" class="btn btn-primary">Retour</a>
+    <?php } else { ?>
+        <?= $messageSuppression ?><br>
+    <?php } ?>
+
 
 </main>
 

@@ -33,7 +33,6 @@ foreach ($resultat as $row) {
       <h3><?= $recette["description"] ?></h3>
       <p>Temps de préparation : <?= $recette["temps_preparation"] ?> minutes</p>
       <p>Niveau : <?= $recette["niveau_difficulte"] ?></p>
-      <h4>Ingrédients : </h4>
       <div class="form-group">
         <a href="administration_module_personnel.php">Retour à la page admin</a>
       </div>

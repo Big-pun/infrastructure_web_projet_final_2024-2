@@ -20,7 +20,7 @@ if (isset($_POST['nom'], $_POST['description'], $_POST['temps_preparation'], $_P
 
         if ($requete->execute()) {
             error_log("Requête exécutée avec succès");
-            $messageAjout = "<div class='alert alert-success'>Recette ajoutée</div>";
+            $messageAjout = "<div class='alert alert-success'>Recette ajoutée !!!</div>";
         } else {
             error_log("Erreur lors de l'exécution de la requête : " . $requete->error);
             $messageAjout =  "<div class='alert alert-danger'>Une erreur est survenue lors de l'ajout.</div>";

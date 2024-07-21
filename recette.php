@@ -7,9 +7,8 @@ if (!isset($_GET['id'])) { // Vérification que la page reçoit un identifiant e
 }
 
 $id = $_GET['id'];
-$requete = $mysqli->prepare("SELECT recettes.nom as recette, recettes.description, recettes.temps_preparation, recettes.niveau_difficulte, ingredients.nom, ingredients.quantite FROM recettes INNER JOIN ingredients ON recettes.id = ingredients.fk_recette WHERE recettes.id = ?");
-
-$requete->bind_param("i", $id); // Liaison du paramètre 'id' à la requête
+$requete = $mysqli->prepare("SELECT * FROM recettes WHERE recettes.id = ?");
+$requete->bind_param("i", $id);
 $requete->execute();
 $resultat = $requete->get_result();
 
@@ -17,14 +16,12 @@ $recette = []; // Initialisation du tableau pour la recette
 foreach ($resultat as $row) {
   if (!isset($recette["nom"])) {
     $recette = [
-      "nom" => $row["recette"],
+      "nom" => $row["nom"],
       "description" => $row["description"],
       "temps_preparation" => $row["temps_preparation"],
       "niveau_difficulte" => $row["niveau_difficulte"],
-      "ingredients" => []
     ];
   }
-  $recette["ingredients"][] = $row["nom"] . " : " . $row["quantite"];
 }
 ?>
 
@@ -37,11 +34,6 @@ foreach ($resultat as $row) {
       <p>Temps de préparation : <?= $recette["temps_preparation"] ?> minutes</p>
       <p>Niveau : <?= $recette["niveau_difficulte"] ?></p>
       <h4>Ingrédients : </h4>
-      <ul>
-        <?php foreach ($recette["ingredients"] as $ingredient) : ?>
-          <li><?= $ingredient ?></li>
-        <?php endforeach; ?>
-      </ul>
       <div class="form-group">
         <a href="administration_module_personnel.php">Retour à la page admin</a>
       </div>

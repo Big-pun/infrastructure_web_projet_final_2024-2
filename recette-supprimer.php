@@ -1,5 +1,6 @@
 <?php
 include_once(__DIR__ . '/include/header.php');
+$pageTitle = "Supprimer une recette";
 
 if (!isset($_GET['id'])) {
     echo 'Identifiant manquant';

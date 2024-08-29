@@ -1,5 +1,6 @@
 <?php include_once(__DIR__ . '/include/header.php');
 include_once "include/config.php";
+$pageTitle = "Accueil";
 ?>
 
 <main>

@@ -1,5 +1,6 @@
 <?php
 include_once(__DIR__ . '/include/header.php');
+$pageTitle = "Ajouter une recette";
 
 $messageAjout =  "Message qui sera généré selon le succès ou l’échec de l’ajout";
 

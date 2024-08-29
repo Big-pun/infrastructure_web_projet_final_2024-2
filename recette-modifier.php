@@ -1,5 +1,6 @@
 <?php
 include_once(__DIR__ . '/include/header.php');
+$pageTitle = "Modifier une recette";
 
 // Affichage 
 if (!isset($_GET['id'])) {

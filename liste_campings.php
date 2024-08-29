@@ -1,5 +1,6 @@
 <?php
 include_once(__DIR__ . '/include/header.php');
+$pageTitle = "Liste des campings";
 
 // Requête pour obtenir la liste des campings actifs en ordre alphabétique
 $requete = $mysqli->prepare("SELECT id, nom, region, id_picsum FROM campings WHERE actif = 1 ORDER BY nom ASC");

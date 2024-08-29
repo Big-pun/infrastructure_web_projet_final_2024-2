@@ -1,6 +1,8 @@
 <?php include_once(__DIR__ . '/config.php');
 
 $mysqli = new mysqli($host, $username, $password, $dbname);
+$mysqli->set_charset("utf8mb4");
+
 if ($mysqli->connect_errno) {
   echo "Échec de connexion à la base de données MySQL: " . $mysqli->connect_error;
   exit();
@@ -19,7 +21,7 @@ if ($mysqli->connect_errno) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Titre de la page (défi! rendre ce titre dynamique selon la page sélectionnée)</title>
+  <title><?= isset($pageTitle) ? htmlspecialchars($pageTitle) : 'Projet Final' ?></title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="css/styles.css">
   <!-- <script src="https://cdn.tailwindcss.com"></script>

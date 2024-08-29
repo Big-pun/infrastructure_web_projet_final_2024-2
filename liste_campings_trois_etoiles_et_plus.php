@@ -1,6 +1,7 @@
 <?php 
-include_once(__DIR__ . '/include/header.php');
 $pageTitle = "Campings 3* et plus";
+include_once(__DIR__ . '/include/header.php');
+
 
 // Requête pour obtenir la liste des campings 3 etoiles et plus actifs en ordre alphabétique
 $requete = $mysqli->prepare("SELECT id, nom, region, id_picsum FROM campings WHERE actif = 1 AND nb_etoiles >= 3 ORDER BY nom ASC;");

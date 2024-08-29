@@ -1,6 +1,6 @@
-<?php 
+<?php $pageTitle = "Recettes et ingrédients";
 include_once(__DIR__ . '/include/header.php');
-$pageTitle = "Recettes et ingrédients";
+
 
 // Requete SQL avec jointure pour afficher les recettes et les ingredients
 $requete = $mysqli->prepare("SELECT recettes.nom as recette, recettes.description, recettes.temps_preparation, recettes.niveau_difficulte, ingredients.nom, ingredients.quantite FROM recettes INNER JOIN ingredients ON recettes.id = ingredients.fk_recette");

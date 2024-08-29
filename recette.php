@@ -1,4 +1,4 @@
-<?php
+<?php $pageTitle = "Détails d'une recette";
 include_once(__DIR__ . '/include/header.php');
 
 if (!isset($_GET['id'])) { // Vérification que la page reçoit un identifiant en paramètre

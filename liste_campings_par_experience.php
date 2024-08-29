@@ -1,6 +1,6 @@
-<?php 
+<?php $pageTitle = "Liste par expérience";
 include_once(__DIR__ . '/include/header.php');
-$pageTitle = "Liste par expérience";
+
 
 // Récupération de l'id de l'expérience sélectionnée
 if (isset($_GET['id'])) {

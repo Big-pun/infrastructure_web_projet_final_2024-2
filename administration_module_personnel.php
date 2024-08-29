@@ -8,10 +8,12 @@
 <!-- et que tout est valide W3C -->
 
 <?php
+$pageTitle = "Gérer les recettes";
 include_once(__DIR__ . '/include/header.php');
 $requete = $mysqli->prepare("SELECT * FROM recettes");
 $requete->execute();
 $resultat = $requete->get_result();
+
 ?>
 
 

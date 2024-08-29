@@ -1,4 +1,5 @@
-<?php include_once(__DIR__ . '/include/header.php');
+<?php $pageTitle = "Détails d'un camping";
+include_once(__DIR__ . '/include/header.php');
 
 
 // Requête pour obtenir les informations du camping sélectionné
